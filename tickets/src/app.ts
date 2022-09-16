@@ -6,6 +6,7 @@ import { errorHandler, NotFoundError, currentUser } from '@ds-tickets/common';
 import { createTicketRouter } from './routes/new';
 import { showTicketRouter } from './routes/show';
 import { indexTicketsRouter } from './routes';
+import { updateTicketRouter } from './routes/update';
 
 const app = express();
 app.set('trust proxy', true);
@@ -21,6 +22,7 @@ app.use(currentUser);
 app.use(showTicketRouter);
 app.use(createTicketRouter);
 app.use(indexTicketsRouter);
+app.use(updateTicketRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
